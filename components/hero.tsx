@@ -1,5 +1,5 @@
 "use client"
-
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Pacifico } from "next/font/google"
@@ -15,6 +15,12 @@ const pacifico = Pacifico({
 })
 
 export default function Hero() {
+  const [isClient, setIsClient] = useState(false)
+
+useEffect(() => {
+  setIsClient(true)
+}, [])
+
   const stats = [
     { value: 500, suffix: "+", label: "Successful Campaigns" },
     { value: 98, suffix: "%", label: "Client Satisfaction" },
@@ -25,20 +31,23 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-80"
-          style={{
-            filter: "brightness(0.9) contrast(1.1)",
-          }}
-        >
-          <source src="/hero-background-video.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/30" />
-      </div>
+  {isClient && (
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="w-full h-full object-cover opacity-80"
+      style={{
+        filter: "brightness(0.9) contrast(1.1)",
+      }}
+    >
+      <source src="/hero-background-video.mp4" type="video/mp4" />
+    </video>
+  )}
+  <div className="absolute inset-0 bg-black/30" />
+</div>
+
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto text-center lg:text-left">
