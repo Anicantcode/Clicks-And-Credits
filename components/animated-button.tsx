@@ -13,6 +13,7 @@ interface AnimatedButtonProps {
   type?: "button" | "submit"
   href?: string
   disabled?: boolean
+    gradient?: string // ← added gradient prop
 }
 
 const itemVariants = {

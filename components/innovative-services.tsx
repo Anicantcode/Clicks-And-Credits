@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
 import { Instagram, Youtube, Shield, CheckCircle, DollarSign } from "lucide-react"
 import AnimatedButton from "./animated-button"
 import Link from "next/link"
@@ -50,7 +49,6 @@ const services = [
 ]
 
 export default function InnovativeServices() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
     <section className="py-24 bg-black relative">
@@ -79,8 +77,6 @@ export default function InnovativeServices() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                onHoverStart={() => setHoveredIndex(index)}
-                onHoverEnd={() => setHoveredIndex(null)}
                 className="bg-gray-900/30 border border-gray-800 rounded-2xl p-8 backdrop-blur-sm hover:border-gray-700 transition-all duration-300 group"
               >
                 <div className="aspect-video bg-gray-900 rounded-lg mb-6 overflow-hidden relative border border-gray-800">

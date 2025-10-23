@@ -9,16 +9,16 @@ export default function CursorEffect() {
   const [ripples, setRipples] = useState<Array<{ x: number; y: number; size: number; opacity: number; id: number }>>([])
   const [rippleId, setRippleId] = useState(0)
 
-  // Colors to cycle through
-  const colors = [
-    "rgba(59, 130, 246, 0.5)", // blue
-    "rgba(139, 92, 246, 0.5)", // purple
-    "rgba(236, 72, 153, 0.5)", // pink
-    "rgba(34, 197, 94, 0.5)", // green
-    "rgba(249, 115, 22, 0.5)", // orange
-  ]
-
   useEffect(() => {
+    // Colors to cycle through (moved inside useEffect)
+    const colors = [
+      "rgba(59, 130, 246, 0.5)", // blue
+      "rgba(139, 92, 246, 0.5)", // purple
+      "rgba(236, 72, 153, 0.5)", // pink
+      "rgba(34, 197, 94, 0.5)", // green
+      "rgba(249, 115, 22, 0.5)", // orange
+    ]
+
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
 
@@ -45,7 +45,7 @@ export default function CursorEffect() {
 
       // Remove ripple after animation
       setTimeout(() => {
-        setRipples((prev) => prev.filter((ripple) => ripple.id !== newRipple.id))
+        setRipples((prev) => prev.filter((r) => r.id !== newRipple.id))
       }, 1000)
     }
 
@@ -56,7 +56,7 @@ export default function CursorEffect() {
       window.removeEventListener("mousemove", updatePosition)
       window.removeEventListener("click", handleClick)
     }
-  }, [rippleId, colors])
+  }, [rippleId]) // removed colors from dependency array
 
   // Animate ripples
   useEffect(() => {
